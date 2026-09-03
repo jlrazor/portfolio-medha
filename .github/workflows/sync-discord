@@ -1,0 +1,35 @@
+name: Synchro Discord vers le portfolio
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'   # toutes les 20 minutes
+  workflow_dispatch:          # bouton "Run workflow" manuel dans l'onglet Actions
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Récupérer les nouvelles images depuis Discord
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+        run: node scripts/sync-discord.js
+
+      - name: Publier les changements si besoin
+        run: |
+          git config user.name "portfolio-bot"
+          git config user.email "actions@github.com"
+          git add images data/images.json
+          git diff --staged --quiet || git commit -m "Synchro: nouvelles images depuis Discord"
+          git push
