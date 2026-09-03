@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Graphisme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-top">
+    <h1 class="brand">Razor</h1>
+    <p class="tagline">Graphisme &amp; direction visuelle</p>
+  </div>
+
+  <nav class="filters" id="filters">
+    <button class="filter-btn is-active" data-filter="all">Tout</button>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="live-status" id="liveStatus">
+      <span class="pulse-dot"></span>
+      <div class="live-text">
+        <span class="live-label">Mur en direct</span>
+        <span class="live-meta" id="liveMeta">en attente de la première image…</span>
+      </div>
+    </div>
+    <p class="hint">Nouvelles images postées depuis Discord.</p>
+  </div>
+</aside>
+
+<main class="gallery-wrap">
+  <div class="gallery" id="gallery">
+    <!-- rempli par script.js -->
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    <span class="empty-mark">◌</span>
+    <p>Ta galerie est vide pour l'instant.</p>
+    <p class="empty-sub">Poste une image dans ton salon Discord dédié — elle apparaîtra ici automatiquement.</p>
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">✕</button>
+  <img id="lightboxImg" src="" alt="">
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
